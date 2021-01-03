@@ -30,6 +30,7 @@ namespace prog6.sem32
                 score = Convert.ToInt32(population * millitarypow);
             }
             public string title;
+            public int[] army = new int[3];
             public int population;
             public float score;
             public float millitarypow;
