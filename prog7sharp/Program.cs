@@ -13,12 +13,20 @@ namespace prog6.sem32
                 population = Convert.ToInt32(Console.ReadLine());
                 Console.WriteLine("Введите военную мощь (=<2):");
                 millitarypow = Convert.ToSingle(Console.ReadLine());
+                for (int i = 0; i < 3; i++)
+                {
+                    Console.WriteLine($"Введите {i + 1} войско: ");
+                    army[i] = Convert.ToInt32(Console.ReadLine());
+                }
             }
-            public void Init(string a, int b, float c)
+            public void Init(string a, int b, float c, int one, int two, int three)
             {
                 title = a;
                 population = b;
                 millitarypow = c;
+                army[1] = one;
+                army[2] = two;
+                army[3] = three;
             }
             public void Surrend()
             {
@@ -28,6 +36,24 @@ namespace prog6.sem32
             public void Endwar()
             {
                 score = Convert.ToInt32(population * millitarypow);
+            }
+            static public void fight (ref int i, peacefull one, enemy two)
+            {
+                int score1, score2;
+                score1 = 0;
+                score2 = 0;
+                if (one.army[0] > two.army[0])
+                    score1++;
+                else score2++;
+                if (one.army[1] > two.army[1])
+                    score1++;
+                else score2++;
+                if (one.army[2] > two.army[2])
+                    score1++;
+                else score2++;
+                if (score1 > score2) i = 1;
+                else i = 2;
+
             }
             public string title;
             public int[] army = new int[3];
@@ -74,7 +100,7 @@ namespace prog6.sem32
             peacefull one = new peacefull();
             enemy two = new enemy();
             one.Read();
-            two.Init("Rome", 11000, (float)1.1);
+            two.Init("Rome", 11000, (float)1.1,100,200,300);
             one.Display();
             two.Display();
             Console.WriteLine("***********Начало войны***********");
@@ -118,6 +144,16 @@ namespace prog6.sem32
             {
                 one.Devpopulation();
                 two.devmilitar();
+                int i=0;
+                nation.fight(ref i, one, two);
+                if (i == 1)
+                {
+                    Console.WriteLine($"\nАрмия {one.title} победила");
+                }
+                if (i == 2)
+                {
+                    Console.WriteLine($"\nАрмия {two.title} победила");
+                }
                 one.Endwar();
                 two.Endwar();
                 if (one.score > two.score)
