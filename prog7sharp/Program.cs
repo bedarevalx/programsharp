@@ -1,5 +1,5 @@
 ﻿using System;
-namespace prog6.sem32
+namespace prog7sharp
 {
     class Program
     {
@@ -37,7 +37,7 @@ namespace prog6.sem32
             {
                 score = Convert.ToInt32(population * millitarypow);
             }
-            static public void fight (ref int i, peacefull one, enemy two)
+            static public void fight(ref int i, peacefull one, peacefull two)
             {
                 int score1, score2;
                 score1 = 0;
@@ -97,15 +97,14 @@ namespace prog6.sem32
         };
         static void Main(string[] args)
         {
-            peacefull one = new peacefull();
-            enemy two = new enemy();
-            one.Read();
-            two.Init("Rome", 11000, (float)1.1,100,200,300);
-            one.Display();
-            two.Display();
+            peacefull[] peace = new peacefull[2];
+            peace[0].Read();
+            peace[1].Init("Rome", 11000, (float)1.1, 100, 200, 300);
+            peace[0].Display();
+            peace[1].Display();
             Console.WriteLine("***********Начало войны***********");
             Console.WriteLine("\nУ государств еще есть возможность этого избежать, если\n одно из государств сдастся");
-            Console.WriteLine($"\nГосударство {one.title} вы хотите сдаться? (1-да 2-нет)");
+            Console.WriteLine($"\nГосударство {peace[0].title} вы хотите сдаться? (1-да 2-нет)");
             int num;
             do
             {
@@ -115,9 +114,9 @@ namespace prog6.sem32
             } while (true);
             if (num == 49)
             {
-                one.Surrend();
+                peace[0].Surrend();
             }
-            Console.WriteLine($"\nГосударство {two.title} вы хотите сдаться? (1-да 2-нет)");
+            Console.WriteLine($"\nГосударство {peace[1].title} вы хотите сдаться? (1-да 2-нет)");
             do
             {
                 num = Console.ReadKey().KeyChar;
@@ -126,45 +125,45 @@ namespace prog6.sem32
             } while (true);
             if (num == 49)
             {
-                two.Surrend();
+                peace[1].Surrend();
             }
-            if (one.surrender == true && two.surrender == true)
+            if (peace[0].surrender == true && peace[1].surrender == true)
             {
                 Console.WriteLine("Был заключен мирный переговор, война закончилась");
             }
-            if (one.surrender == true && two.surrender == false)
+            if (peace[0].surrender == true && peace[1].surrender == false)
             {
-                Console.WriteLine($"Государство {one.title} сдалось, победу одержало государство {two.title}");
+                Console.WriteLine($"Государство {peace[0].title} сдалось, победу одержало государство {peace[1].title}");
             }
-            if (one.surrender == false && two.surrender == true)
+            if (peace[0].surrender == false && peace[1].surrender == true)
             {
-                Console.WriteLine($"Государство {two.title} сдалось, победу одержало государство {one.title}");
+                Console.WriteLine($"Государство {peace[1].title} сдалось, победу одержало государство {peace[0].title}");
             }
-            if (one.surrender == false && two.surrender == false)
+            if (peace[0].surrender == false && peace[1].surrender == false)
             {
-                one.Devpopulation();
-                two.devmilitar();
-                int i=0;
-                nation.fight(ref i, one, two);
+                peace[0].Devpopulation();
+                peace[1].Devpopulation();
+                int i = 0;
+                nation.fight(ref i, peace[0], peace[1]);
                 if (i == 1)
                 {
-                    Console.WriteLine($"\nАрмия {one.title} победила");
+                    Console.WriteLine($"\nАрмия {peace[0].title} победила");
                 }
                 if (i == 2)
                 {
-                    Console.WriteLine($"\nАрмия {two.title} победила");
+                    Console.WriteLine($"\nАрмия {peace[1].title} победила");
                 }
-                one.Endwar();
-                two.Endwar();
-                if (one.score > two.score)
+                peace[0].Endwar();
+                peace[1].Endwar();
+                if (peace[0].score > peace[1].score)
                 {
-                    Console.WriteLine($"\nВ ходе войны государство {two.title} потерпело поражение, победу одержало государство {one.title}");
+                    Console.WriteLine($"\nВ ходе войны государство {peace[1].title} потерпело поражение, победу одержало государство {peace[0].title}");
                 }
-                if (one.score < two.score)
+                if (peace[0].score < peace[1].score)
                 {
-                    Console.WriteLine($"\nВ ходе войны государство {one.title} потерпело поражение, победу одержало государство {two.title}");
+                    Console.WriteLine($"\nВ ходе войны государство {peace[0].title} потерпело поражение, победу одержало государство {peace[1].title}");
                 }
-                if (one.score == two.score)
+                if (peace[0].score == peace[1].score)
                 {
                     Console.WriteLine("В ходе войны силы обоих сторон оказались равными, объявлена ничья!");
                 }
