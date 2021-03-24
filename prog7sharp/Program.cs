@@ -39,6 +39,39 @@ namespace prog6.sem32
             public int population;
             public float score;
             public float millitarypow;
+            public static nation operator +(nation a, nation b) // Record+Record
+            {
+                nation c;
+                c = new nation();
+                c.population = a.population + b.population;
+                c.millitarypow = a.millitarypow + b.millitarypow;
+                return c;
+            }
+
+            public static nation operator +(nation a, int b) // Record+int
+            {
+                nation c;
+                c = new nation();
+                c.millitarypow = a.millitarypow;
+                c.population = a.population + b;
+                return c;
+            }
+
+            public static nation operator +(int a, nation b) // int+Record
+            {
+                nation c;
+                c = new nation();
+                c.millitarypow = b.millitarypow;
+                c.population = a + b.population;
+                return c;
+            }
+            public static nation operator ++(nation x) // ++ один префикс и постфикс!
+            {
+                ++x.millitarypow;
+                return x;
+            }
+
+
             /*public bool surrender;
             public bool win;*/
         };
@@ -82,6 +115,32 @@ namespace prog6.sem32
             nation rome = new nation();
             rome.Init("rome", 10000, (float)1.1);
             rome.Display();
+            Console.WriteLine("Государства могут заключить договор объединения: \n");
+            int k;
+            Console.WriteLine($"Государство {italy.title} готово к объединению?(1-да 2-нет)");
+            int ans1;
+            do
+            {
+                ans1 = Convert.ToInt32(Console.ReadKey());
+            } while (ans1 < 1 || ans1 > 2);
+            Console.WriteLine($"Государство {rome.title} готово к объединению?(1-да 2-нет)");
+            int ans2;
+            do
+            {
+                ans2 = Convert.ToInt32(Console.ReadKey());
+            } while (ans2 < 1 || ans2 > 2);
+            if (ans1 == ans2 && ans1 == 1)
+            {
+                nation unioned = new nation();
+                unioned = italy + rome;
+                unioned.title = "Union";
+                Console.WriteLine("Государства заключили договор объединения: \n");
+                unioned.Display();
+            }
+            else Console.WriteLine("Государства не заключили договор объединения: \n");
+
+
+
         }
     }
 }
