@@ -98,6 +98,8 @@ namespace prog7sharp
         static void Main(string[] args)
         {
             peacefull[] peace = new peacefull[2];
+            peace[0] = new peacefull();
+            peace[1] = new peacefull();
             peace[0].Read();
             peace[1].Init("Rome", 11000, (float)1.1, 100, 200, 300);
             peace[0].Display();
