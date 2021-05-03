@@ -24,9 +24,9 @@ namespace prog7sharp
                 title = a;
                 population = b;
                 millitarypow = c;
-                army[1] = one;
-                army[2] = two;
-                army[3] = three;
+                army[0] = one;
+                army[1] = two;
+                army[2] = three;
             }
             public void Surrend()
             {
@@ -69,7 +69,7 @@ namespace prog7sharp
             {
                 Console.WriteLine($"\nУ государства {title} выросла популяция, военная сила уменьшена");
                 population = (int)(population * 1.5);
-                millitarypow = (int)(millitarypow - 0.1);
+                millitarypow = (float)(millitarypow - 0.1);
             }
             public void Display()
             {
