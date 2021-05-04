@@ -19,15 +19,6 @@ namespace prog7sharp
                     army[i] = Convert.ToInt32(Console.ReadLine());
                 }
             }
-            public void Init(string a, int b, float c, int one, int two, int three)
-            {
-                title = a;
-                population = b;
-                millitarypow = c;
-                army[0] = one;
-                army[1] = two;
-                army[2] = three;
-            }
             public void Surrend()
             {
                 Console.WriteLine($"Государство {title} сдалось");
@@ -85,6 +76,36 @@ namespace prog7sharp
                 Console.WriteLine($"Военная мощь - {millitarypow}");
                 Console.WriteLine($"Тип государства - Дружелюбное");
             }
+            public peacefull(string name,int populate,float milit,int ar1,int ar2,int ar3)
+            {
+                title = name;
+                population = populate;
+                millitarypow = milit;
+                army[0] = ar1;
+                army[1] = ar2;
+                army[2] = ar3;
+                nation.counter++;
+            }
+            public peacefull()
+            {
+                title = "Greece";
+                population = 11000;
+                millitarypow = (float)1.5;
+                army[0] = 100;
+                army[1] = 200;
+                army[2] = 300;
+                nation.counter++;
+            }
+            public peacefull(string name)
+            {
+                title = name;
+                population = 12000;
+                millitarypow = (float)1.5;
+                army[0] = 200;
+                army[1] = 100;
+                army[2] = 150;
+                nation.counter++;
+            }
         };
         class enemy : nation
         {
@@ -101,16 +122,32 @@ namespace prog7sharp
                 Console.WriteLine($"Военная мощь - {millitarypow}");
                 Console.WriteLine($"Тип государства - Военное");
             }
+            public enemy(string name, int populate, float milit, int ar1, int ar2, int ar3)
+            {
+                title = name;
+                population = populate;
+                millitarypow = milit;
+                army[0] = ar1;
+                army[1] = ar2;
+                army[2] = ar3;
+                nation.counter++;
+            }
+            public enemy()
+            {
+                title = "Greece";
+                population = 11000;
+                millitarypow = (float)1.5;
+                army[0] = 100;
+                army[1] = 200;
+                army[2] = 300;
+                nation.counter++;
+            }
         };
         static void Main(string[] args)
         {
             peacefull[] peace = new peacefull[2];
             peace[0] = new peacefull();
-            nation.counter++;
-            peace[1] = new peacefull();
-            nation.counter++;
-            peace[0].Read();
-            peace[1].Init("Rome", 11000, (float)1.1, 100, 200, 300);
+            peace[1] = new peacefull("Rome", 11000, (float)1.1, 100, 200, 300);
             peace[0].Display();
             peace[1].Display();
             nation.discount();
