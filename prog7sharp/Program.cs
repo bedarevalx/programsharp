@@ -37,6 +37,13 @@ namespace prog7sharp
             {
                 score = Convert.ToInt32(population * millitarypow);
             }
+            public static int counter = 0;
+            public static void discount()
+            {
+                Console.WriteLine($"В войне участвует {counter} государств\n");
+                Console.WriteLine(" ***********Начало войны***********\n");
+                Console.WriteLine("\nУ государств еще есть возможность этого избежать, если\n одно из государств сдастся\n");
+            }
             static public void fight(ref int i, peacefull one, peacefull two)
             {
                 int score1, score2;
@@ -99,13 +106,14 @@ namespace prog7sharp
         {
             peacefull[] peace = new peacefull[2];
             peace[0] = new peacefull();
+            nation.counter++;
             peace[1] = new peacefull();
+            nation.counter++;
             peace[0].Read();
             peace[1].Init("Rome", 11000, (float)1.1, 100, 200, 300);
             peace[0].Display();
             peace[1].Display();
-            Console.WriteLine("***********Начало войны***********");
-            Console.WriteLine("\nУ государств еще есть возможность этого избежать, если\n одно из государств сдастся");
+            nation.discount();
             Console.WriteLine($"\nГосударство {peace[0].title} вы хотите сдаться? (1-да 2-нет)");
             int num;
             do
