@@ -143,11 +143,40 @@ namespace prog7sharp
                 nation.counter++;
             }
         };
-        static void Main(string[] args)
+
+        static string instring()
+        {
+            int p = 0;
+            string titlein="";
+            Exception e1 = new Exception("");
+            int size;
+            while (p == 0)
+            {
+                p = 1;
+                Console.WriteLine("\nВведите название государства: ");
+                titlein = Console.ReadLine();
+                size = titlein.Length;
+                try
+                {
+                    for (int i = 0; i < size; i++)
+                    {
+                        if (titlein[i]>='0' && titlein[i] <= '9') throw e1 =new Exception("Строка введена неверно, повторите ввод\n");
+                    }
+                }
+                catch (Exception){
+                    string message = e1.Message;
+                    Console.WriteLine(message);
+                    p = 0;
+                }
+                }
+                return titlein;
+               }
+
+            static void Main(string[] args)
         {
             peacefull[] peace = new peacefull[2];
             peace[0] = new peacefull();
-            peace[1] = new peacefull("Rome", 11000, (float)1.1, 100, 200, 300);
+            peace[1] = new peacefull(instring(), 11000, (float)1.1, 100, 200, 300);
             peace[0].Display();
             peace[1].Display();
             nation.discount();
